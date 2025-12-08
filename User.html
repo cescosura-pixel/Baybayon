@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Nearby Users</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
+<style>
+  body, html {
+    height: 100%;
+    margin: 0;
+  }
+  .main-container {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    background-image: url('BG - Message.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  /* Left panel */
+  .left-panel {
+    width: 320px;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow-y: auto;
+  }
+  .header {
+    padding: 15px 20px;
+    font-weight: bold;
+    font-size: 1.5rem;
+    border-bottom: 1px solid black;
+    display: flex;
+    align-items: center;
+  }
+  .back-button {
+    width: 24px;
+    height: 24px;
+    background-image: url('https://cdn-icons-png.flaticon.com/512/271/271220.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    margin-right: 15px;
+  }
+  .user-list {
+    flex-grow: 1;
+    overflow-y: auto;
+  }
+  .user-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    border-bottom: 1px solid black;
+    cursor: pointer;
+  }
+  .user-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  .user-item img {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    margin-right: 15px;
+  }
+  /* Right panel with wave background */
+  
+  .chat-right-panel {
+    background-color: #1c1c1ca8;
+    color: #eee;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border-left: 1px solid #222;
+    padding: 20px;
+    width: 100%;
+    display: none;
+  }
+
+  .chat-header {
+    text-align: center;
+    border-bottom: 1px solid #222;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+  }
+  .chat-header img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #555;
+  }
+  .chat-header h2 {
+    font-weight: 600;
+    margin: 10px 0 5px;
+  }
+  
+  .chat-header p {
+    font-size: 0.9rem;
+    color: #bbb;
+    margin: 0;
+  }
+
+  .chat-messages {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-right: 10px;
+    scrollbar-width: thin;
+    scrollbar-color: #444 transparent;
+  }
+  .chat-messages::-webkit-scrollbar {
+    width: 6px;
+  }
+  .chat-messages::-webkit-scrollbar-thumb {
+    background-color: #444;
+    border-radius: 3px;
+  }
+
+  .chat-input-bar {
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .chat-input-bar button {
+    background: none;
+    border: none;
+    color: #0095f6;
+    font-size: 1.3rem;
+    cursor: pointer;
+  }
+  .chat-input-bar button:focus {
+    outline: none;
+  }
+   [title="Send"]:hover,
+   [title="Attach"]:hover,
+   [title="Mic"]:hover,
+   [title="Emoji"]:hover,
+   [title="Menu"]:hover,
+   [title="GIF"]:hover {
+       background-color: #777;
+   }
+</style>
+</head>
+<body>
+  <div class="main-container">
+    <div class="left-panel">
+      <div class="header">
+        <div class="back-button" onclick="history.back()"></div>
+        NEARBY!
+      </div>
+      <div class="user-list">
+        <div class="user-item"  data-name="User One" data-img="Gab.jpg">
+          <img src="Gab.jpg" alt="User 1" />
+          <span>User One</span>
+        </div>
+        <div class="user-item" data-name="User Two" data-img="User2.jpg">
+          <img src="User2.jpg" alt="User 2" />
+          <span>User Two</span>
+        </div>
+        <div class="user-item" data-name="User Three" data-img="User3.jpg">
+          <img src="User3.jpg" alt="User 3" />
+          <span>User Three</span>
+        </div>
+        <div class="user-item" data-name="User Four" data-img="User4.jpg">
+          <img src="User4.jpg" alt="User 4" />
+          <span>User Four</span>
+        </div>
+        <div class="user-item" data-name="User Five" data-img="User5.jpg">
+          <img src="User5.jpg" alt="User 5" />
+          <span>User Five</span>
+        </div>
+        <div class="user-item" data-name="User Six" data-img="User6.jpg">
+          <img src="User6.jpg" alt="User 6" />
+          <span>User Six</span>
+        </div>
+        <div class="user-item" data-name="User Seven" data-img="User7.jpg">
+          <img src="User7.jpg" alt="User 7" />
+          <span>User Seven</span>
+        </div>
+        <div class="user-item" data-name="User Eight" data-img="User8.jpg">
+          <img src="User8.jpg" alt="User 8" />
+          <span>User Eight</span>
+        </div>
+        <div class="user-item" data-name="User Nine" data-img="User9.jpg">
+          <img src="User9.jpg" alt="User 9" />
+          <span>User Nine</span>
+        </div>
+      </div>
+    </div>
+    <div class="right-panel"></div>
+    <div class="chat-right-panel">
+      <div class="chat-header">
+        <img src="" alt="Profile" />
+        <h2>User1</h2>
+        <p>From Nearby</p>
+        <p style="font-size: 0.8rem; color: #777;">Real Person</p>
+      </div>
+
+      <div class="chat-messages"></div>
+
+      <div class="chat-input-bar">
+        <button title="Mic">🎤</button>
+        <button title="Attach">🖼️</button>
+        <button title="GIF">GIF</button>
+        <input id="Chat-input" placeholder="Aa" aria-label="Type a message" />
+        <button id="Send" title="Send">📤</button>
+        <button title="Emoji">😊</button>
+        <button title="Menu">≡</button>
+      </div>
+    </div>
+  </div>
+
+ <script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    // ELEMENTS
+    const userItems = document.querySelectorAll(".user-item");
+    const chatPanel = document.querySelector(".chat-right-panel");
+    const chatMessages = document.querySelector(".chat-messages");
+    const profileImg = document.querySelector(".chat-header img");
+    const profileName = document.querySelector(".chat-header h2");
+    const input = document.getElementById("Chat-input");
+    const sendBtn = document.getElementById("Send");
+
+    // MESSAGE STORAGE PER USER
+    let chatHistory = {};     
+    let currentUser = null;
+
+    function loadMessages(user) {
+        chatMessages.innerHTML = "";
+        if (!chatHistory[user]) return;
+        chatHistory[user].forEach(msg => {
+            addMessageToUI(msg.text, msg.type, false);
+        });
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function addMessageToUI(text, type, save = true) {
+        const msgDiv = document.createElement("div");
+        msgDiv.classList.add("message");
+        msgDiv.style.maxWidth = "50%";
+        msgDiv.style.padding = "10px 14px";
+        msgDiv.style.marginBottom = "10px";
+        msgDiv.style.borderRadius = "18px";
+
+        if (type === "sent") {
+            msgDiv.style.background = "#8d99a4ff";
+            msgDiv.style.color = "white";
+            msgDiv.style.marginLeft = "auto";
+        } 
+
+        msgDiv.textContent = text;
+        chatMessages.appendChild(msgDiv);
+
+        if (save && currentUser) {
+            if (!chatHistory[currentUser]) chatHistory[currentUser] = [];
+            chatHistory[currentUser].push({ text, type });
+        }
+
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    userItems.forEach(item => {
+        item.addEventListener("click", () => {
+            currentUser = item.getAttribute("data-name");
+            const img = item.getAttribute("data-img");
+
+            profileImg.src = img;
+            profileName.textContent = currentUser;
+
+            chatPanel.style.display = "flex";
+
+            loadMessages(currentUser);
+        });
+    });
+
+    sendBtn.addEventListener("click", () => {
+        const text = input.value.trim();
+        if (text === "" || !currentUser) return;
+        addMessageToUI(text, "sent");
+        input.value = "";
+    });
+
+    input.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+            sendBtn.click();
+        }
+    });
+
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+<title>Login Page</title>
+
+<style>
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-image: url('Bg-login.jpeg'); /* Make sure image is in the same folder */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.login-card {
+    background-color: rgba(95, 81, 81, 0.58);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+    font-size: 3rem;
+    font-family: 'Times New Roman', serif;
+    font-weight: bold;
+}
+
+.form-control {
+    border-radius: 40px;
+    height: 45px;
+}
+
+/* Back button as a styled link */
+.back-button {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-image: url('https://cdn-icons-png.flaticon.com/512/271/271220.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    text-decoration: none;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+/* Buttons */
+.Cancel-btn, .Sign-in-btn {
+    border-radius: 40px;
+    width: 120px;
+    height: 45px;
+    border: none;
+    font-weight: 600;
+    color: white;
+}
+
+.Cancel-btn { background-color: red; }
+.Cancel-btn:hover { background-color: #a06d6d; }
+
+.Sign-in-btn { background-color: #4caf50; }
+.Sign-in-btn:hover { background-color: #3e8e41; }
+</style>
+</head>
+
+<body>
+
+<a href="index.html" class="back-button" alt="Go Back"></a>
+
+<div class="container h-100 d-flex justify-content-center align-items-center">
+    <div class="row w-100 justify-content-center">
+        <div class="col-lg-4 col-md-6 col-sm-10">
+            <div class="login-card text-light">
+                
+                <div class="row">
+                    <div class="col text-center">
+                        <h1>Login</h1>
+                    </div>
+                </div>
+
+                <!-- Username -->
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <label class="mb-1" for="User">Username</label>
+                        <input id="User" type="email" class="form-control" placeholder="gab@gmail.com">
+                    </div>
+                </div>
+
+                <!-- Password -->
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <label class="mb-1" for="Pass">Password</label>
+                        <input type="password" id="Pass" class="form-control" placeholder="**********">
+                    </div>
+                </div>
+
+               <!-- Show Password -->
+<div class="row mt-2">
+    <div class="col-12 d-flex align-items-center text-light">
+        <input type="checkbox" id="showPass" class="me-2" onclick="togglePasswordVisibility()">
+        <label for="showPass" class="mb-0" style="cursor: pointer;">Show Password</label>
+    </div>
+</div>
+
+                <!-- Buttons -->
+                <div class="row mt-4">
+                    <div class="col-6 d-flex justify-content-start">
+                        <a href="index.html">
+                            <button class="Cancel-btn">Cancel</button>
+                        </a>
+                    </div>
+                    <div class="col-6 d-flex justify-content-end">
+                        <button class="Sign-in-btn" onclick="ValidateInput()">Sign In</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function togglePasswordVisibility() {
+    let pass = document.getElementById("Pass");
+    pass.type = pass.type === "password" ? "text" : "password";
+}
+
+function ValidateInput() {
+    let user = document.getElementById("User").value.trim();
+    let pass = document.getElementById("Pass").value.trim();
+
+    if (!user.endsWith("@gmail.com")) {
+        alert("Username must be a Gmail address (example@gmail.com)");
+        return;
+    }
+
+    if (user === "" || pass === "") {
+        alert("Fill out the fields correctly");
+        return;
+    }
+
+    // Redirect
+    window.location.href = "User.html"; // replace with your actual route
+}
+</script>
+
+</body>
+</html>

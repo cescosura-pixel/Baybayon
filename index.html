@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Baybayon</title>
+
+<style>
+body, html {
+    height: 100vh;
+}
+header {
+    border: solid 3px #4270c5ff;
+    background-color: #2749dfff;
+}
+
+header h1 {
+    text-shadow: white 2px 2px 4px;
+    font-style: italic;
+    color: white;
+}
+
+.Logo {
+    height: 55px;
+    width: 55px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+#navMenu {
+    position: absolute;
+    top: 80px;
+    right: 10px;
+    z-index: 1000;
+}
+
+#navMenu .card {
+    border-radius: 10px;
+    background: gray;
+}
+
+#navMenu .list-group-item:hover {
+    background-color: #926161;
+    cursor: pointer;
+}
+
+.navbar-toggler {
+    border: none;
+    width: 45px;
+    height: 45px;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280,0,0,0.7%29' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    background-color: white;
+    border-radius: 50%;
+}
+
+.navbar-toggler.active .navbar-toggler-icon {
+    background: white;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3e%3cline x1='18' y1='6' x2='6' y2='18' stroke='black' stroke-width='2'/%3e%3cline x1='6' y1='6' x2='18' y2='18' stroke='black' stroke-width='2'/%3e%3c/svg%3e");
+}
+
+.Island img {
+    width: 50%;
+    max-width: 500px;
+    border-radius: 10px;
+}
+
+.Tide-Chart {
+    width: 100%;
+    max-width: 600px;
+    overflow: hidden;
+    border-radius: 16px;
+    background-color: #333;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    margin: auto;
+}
+
+.Tide-Header {
+    padding: 16px;
+    color: white;
+    background-color: blue;
+    text-align: center;
+}
+
+.Tide-Body {
+    height: 200px;
+    background: #7c7171;
+    position: relative;
+}
+
+.Vertical-Line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    background: white;
+    width: 2px;
+    transform: translateX(-50%);
+}
+
+.Tide-Body p {
+    color: white;
+}
+
+.btn-custom {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #4a80d6;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 6px;
+    border: 1px solid #333;
+    cursor: pointer;
+    font-size: 16px;
+    height: 100px;
+    width: 150px;
+}
+
+.icon-msg {
+    width: 50px;
+    height: 50px;
+}
+
+/* REALISTIC WAVES */
+.waves-wrapper {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* BACK WAVE */
+.wave-back {
+    position: absolute;
+    bottom: 0;
+    width: 200%;
+    height: 220px;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="200" viewBox="0 0 2000 200"><path fill="%230098e6" opacity="0.6" d="M0,120 C300,200 600,40 900,120 C1200,200 1500,40 2000,120 L2000,200 L0,200Z"/></svg>') repeat-x;
+    background-size: 50% 100%;
+    animation: waveBack 12s linear infinite;
+}
+
+/* FRONT WAVE */
+.wave-front {
+    position: absolute;
+    bottom: 0;
+    width: 200%;
+    height: 230px;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="200" viewBox="0 0 2000 200"><path fill="%2300c3ff" opacity="0.9" d="M0,140 C350,240 700,60 1050,140 C1400,240 1700,60 2000,140 L2000,200 L0,200Z"/></svg>') repeat-x;
+    background-size: 50% 100%;
+    animation: waveFront 6s linear infinite;
+}
+
+@keyframes waveBack {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-35%); }
+}
+
+@keyframes waveFront {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-60%); }
+}
+
+</style>
+</head>
+
+<body>
+
+<header class="py-3 px-3 d-flex align-items-center flex-wrap">
+    <a href="Logo.jpg"><img src="Logo.jpg" alt="Baybayon Logo" class="Logo"></a>
+    <h1 class="ms-3">Baybayon</h1>
+
+    <div class="input-group ms-auto mt-2 mt-md-0" style="max-width: 260px;">
+    <span class="input-group-text bg-white border-end-0" aria-hidden="true"></span>
+    <input type="search" class="form-control border-start-0" placeholder="Search Your Location">
+</div>
+
+<button class="navbar-toggler ms-3 mt-2 mt-md-0" 
+        data-bs-toggle="collapse" 
+        data-bs-target="#navMenu" 
+        aria-expanded="false" 
+        aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+</button>
+
+
+    <div class="collapse" id="navMenu">
+        <div class="card shadow mt-2">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Home</li>
+                <li class="list-group-item">About</li>
+                <li class="list-group-item">Contact</li>
+            </ul>
+        </div>
+    </div>
+</header>
+<div class="waves-wrapper">
+    <div class="wave-back"></div>
+    <div class="wave-front"></div>
+</div>
+
+
+<div class="container mt-4">
+
+    <div class="row align-items-center">
+        <div class="col-md-4 text-center">
+            <a href="Account.html">
+                <button class="btn-custom mt-3 d-flex flex-column">
+                    <img src="Chat.jpg" alt="Chat and Interact" class="icon-msg">
+                    Chat With Nearby Users
+                </button>
+            </a>
+        </div>
+
+        <div class="col-md-8 text-center text-md-start mt-3">
+            <h1 class="fw-bold text-primary">Today's Tide in General Luna SDN, Philippines</h1>
+        </div>
+    </div>
+
+    <div class="row mt-4 align-items-start">
+        <div class="col-md-6 text-center mb-4">
+            <div class="Island">
+                <img src="Island.jpg" alt="Island picture">
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="Tide-Chart">
+                <div class="Tide-Header">
+                    <h1>Tide Chart</h1>
+                    <p>December 25, 2025</p>
+                </div>
+                <div class="Tide-Body">
+                    <div class="d-flex justify-content-between px-4 pt-3">
+                        <p class="fw-bold">Morning</p>
+                        <p>7:00 AM Tide Rising<br>9:30 AM High Tide Peak</p>
+                    </div>
+                    <div class="d-flex justify-content-between px-4">
+                        <p class="fw-bold">Afternoon</p>
+                        <p>12:00 PM Tide Falling<br>3:30 PM Low Tide Peak</p>
+                    </div>
+                    <div class="Vertical-Line"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+document.querySelector('.navbar-toggler').addEventListener('click', function () {
+    this.classList.toggle('active');
+});
+</script>
+
+</body>
+</html>
