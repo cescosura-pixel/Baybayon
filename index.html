@@ -7,14 +7,17 @@
     <title>Baybayon</title>
 
 <style>
+/* Prevent side scrolling */
 body, html {
     height: 100vh;
+    overflow-x: hidden;
 }
+
+/* HEADER */
 header {
     border: solid 3px #4270c5ff;
     background-color: #2749dfff;
 }
-
 header h1 {
     text-shadow: white 2px 2px 4px;
     font-style: italic;
@@ -28,46 +31,46 @@ header h1 {
     object-fit: cover;
 }
 
+/* NAV MENU */
 #navMenu {
     position: absolute;
     top: 80px;
     right: 10px;
     z-index: 1000;
 }
-
 #navMenu .card {
     border-radius: 10px;
     background: gray;
 }
-
 #navMenu .list-group-item:hover {
     background-color: #926161;
     cursor: pointer;
 }
 
+/* NAV BUTTON */
 .navbar-toggler {
     border: none;
     width: 45px;
     height: 45px;
 }
-
 .navbar-toggler-icon {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280,0,0,0.7%29' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
     background-color: white;
     border-radius: 50%;
 }
-
 .navbar-toggler.active .navbar-toggler-icon {
     background: white;
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3e%3cline x1='18' y1='6' x2='6' y2='18' stroke='black' stroke-width='2'/%3e%3cline x1='6' y1='6' x2='18' y2='18' stroke='black' stroke-width='2'/%3e%3c/svg%3e");
 }
 
+/* ISLAND IMAGE */
 .Island img {
     width: 50%;
     max-width: 500px;
     border-radius: 10px;
 }
 
+/* TIDE CHART */
 .Tide-Chart {
     width: 100%;
     max-width: 600px;
@@ -106,6 +109,7 @@ header h1 {
     color: white;
 }
 
+/* CHAT BUTTON */
 .btn-custom {
     display: inline-flex;
     align-items: center;
@@ -117,16 +121,15 @@ header h1 {
     border: 1px solid #333;
     cursor: pointer;
     font-size: 16px;
-    height: 100px;
+    height: 125px;
     width: 150px;
 }
-
 .icon-msg {
     width: 50px;
     height: 50px;
 }
 
-/* REALISTIC WAVES */
+/* WAVES */
 .waves-wrapper {
     position: fixed;
     bottom: 0;
@@ -137,8 +140,6 @@ header h1 {
     pointer-events: none;
     z-index: -1;
 }
-
-/* BACK WAVE */
 .wave-back {
     position: absolute;
     bottom: 0;
@@ -148,8 +149,6 @@ header h1 {
     background-size: 50% 100%;
     animation: waveBack 12s linear infinite;
 }
-
-/* FRONT WAVE */
 .wave-front {
     position: absolute;
     bottom: 0;
@@ -164,34 +163,80 @@ header h1 {
     0%   { transform: translateX(0); }
     100% { transform: translateX(-35%); }
 }
-
 @keyframes waveFront {
     0%   { transform: translateX(0); }
     100% { transform: translateX(-60%); }
 }
 
+/* ------------------------- */
+/* RESPONSIVE FIXES          */
+/* ------------------------- */
+@media (max-width: 576px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+    }
+    header h1 {
+        margin-top: 10px;
+    }
+    .input-group {
+        width: 100% !important;
+        margin-top: 10px;
+    }
+    .navbar-toggler {
+        margin-top: 10px;
+    }
+    #navMenu {
+        right: 50%;
+        transform: translateX(50%);
+    }
+    .btn-custom {
+        width: 100%;
+        max-width: 240px;
+        height: auto;
+        padding: 14px;
+    }
+    .waves-wrapper {
+        height: 140px;
+    }
+}
+
+@media (max-width: 768px) {
+    .Island img {
+        width: 100%;
+        max-width: 380px;
+    }
+    .Vertical-Line {
+        display: none;
+    }
+    .Tide-Body {
+        height: auto;
+        padding-bottom: 20px;
+    }
+}
 </style>
 </head>
 
 <body>
 
 <header class="py-3 px-3 d-flex align-items-center flex-wrap">
-    <a href="Logo.jpg"><img src="Logo.jpg" alt="Baybayon Logo" class="Logo"></a>
+    <a href="Logo.jpg">
+        <img src="Logo.jpg" alt="Baybayon Logo" class="Logo">
+    </a>
+
     <h1 class="ms-3">Baybayon</h1>
 
     <div class="input-group ms-auto mt-2 mt-md-0" style="max-width: 260px;">
-    <span class="input-group-text bg-white border-end-0" aria-hidden="true"></span>
-    <input type="search" class="form-control border-start-0" placeholder="Search Your Location">
-</div>
+        <span class="input-group-text bg-white border-end-0"></span>
+        <input type="search" class="form-control border-start-0" placeholder="Search Your Location">
+    </div>
 
-<button class="navbar-toggler ms-3 mt-2 mt-md-0" 
-        data-bs-toggle="collapse" 
-        data-bs-target="#navMenu" 
-        aria-expanded="false" 
-        aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-</button>
-
+    <button class="navbar-toggler ms-3 mt-2 mt-md-0"
+            data-bs-toggle="collapse"
+            data-bs-target="#navMenu"
+            aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
     <div class="collapse" id="navMenu">
         <div class="card shadow mt-2">
@@ -203,37 +248,37 @@ header h1 {
         </div>
     </div>
 </header>
+
 <div class="waves-wrapper">
     <div class="wave-back"></div>
     <div class="wave-front"></div>
 </div>
 
-
 <div class="container mt-4">
 
-    <div class="row align-items-center">
-        <div class="col-md-4 text-center">
+    <div class="row align-items-center gy-4">
+        <div class="col-12 col-md-4 text-center">
             <a href="Account.html">
                 <button class="btn-custom mt-3 d-flex flex-column">
                     <img src="Chat.jpg" alt="Chat and Interact" class="icon-msg">
-                    Chat With Nearby Users
+                    Chat With Nearby Users<br>Click Here
                 </button>
             </a>
         </div>
 
-        <div class="col-md-8 text-center text-md-start mt-3">
+        <div class="col-12 col-md-8 text-center text-md-start">
             <h1 class="fw-bold text-primary">Today's Tide in General Luna SDN, Philippines</h1>
         </div>
     </div>
 
-    <div class="row mt-4 align-items-start">
-        <div class="col-md-6 text-center mb-4">
+    <div class="row mt-4 gy-4">
+        <div class="col-12 col-md-6 text-center">
             <div class="Island">
-                <img src="Island.jpg" alt="Island picture">
+                <img src="Island.jpg" alt="Island picture" class="img-fluid rounded">
             </div>
         </div>
 
-        <div class="col-md-6 mb-4">
+        <div class="col-12 col-md-6">
             <div class="Tide-Chart">
                 <div class="Tide-Header">
                     <h1>Tide Chart</h1>
