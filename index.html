@@ -7,10 +7,8 @@
     <title>Baybayon</title>
 
 <style>
-/* Prevent side scrolling */
 body, html {
     height: 100vh;
-    overflow-x: hidden;
 }
 @media (max-width: 600px) {
     header {
@@ -25,11 +23,11 @@ body, html {
         
     }
 }
-/* HEADER */
 header {
     border: solid 3px #4270c5ff;
     background-color: #2749dfff;
 }
+
 header h1 {
     text-shadow: white 2px 2px 4px;
     font-style: italic;
@@ -43,46 +41,52 @@ header h1 {
     object-fit: cover;
 }
 
-/* NAV MENU */
 #navMenu {
     position: absolute;
     top: 80px;
     right: 10px;
     z-index: 1000;
 }
+
 #navMenu .card {
     border-radius: 10px;
     background: gray;
 }
+
 #navMenu .list-group-item:hover {
     background-color: #926161;
     cursor: pointer;
 }
 
-/* NAV BUTTON */
 .navbar-toggler {
     border: none;
     width: 45px;
     height: 45px;
 }
+.navbar-toggler:hover {
+    transform: rotate(360deg);
+    transition: 2s;
+}
+
 .navbar-toggler-icon {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280,0,0,0.7%29' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-    background-color: white;
+    background-color: #91bdc5ff;
     border-radius: 50%;
+    width: 50px;
+    height: 50px;
 }
+
 .navbar-toggler.active .navbar-toggler-icon {
     background: white;
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3e%3cline x1='18' y1='6' x2='6' y2='18' stroke='black' stroke-width='2'/%3e%3cline x1='6' y1='6' x2='18' y2='18' stroke='black' stroke-width='2'/%3e%3c/svg%3e");
 }
 
-/* ISLAND IMAGE */
 .Island img {
     width: 50%;
     max-width: 500px;
     border-radius: 10px;
 }
 
-/* TIDE CHART */
 .Tide-Chart {
     width: 100%;
     max-width: 600px;
@@ -121,7 +125,6 @@ header h1 {
     color: white;
 }
 
-/* CHAT BUTTON */
 .btn-custom {
     display: inline-flex;
     align-items: center;
@@ -133,15 +136,32 @@ header h1 {
     border: 1px solid #333;
     cursor: pointer;
     font-size: 16px;
-    height: 125px;
+    height: 100px;
     width: 150px;
+    box-shadow: 5px 10px 5px #1f71dbab;
 }
+
+.btn-custom:hover {
+    background: radial-gradient(circle ,#1f71dbab 10%, #1dc593ff 90%);
+    background-size: 1000% 1000%;
+    animation: spread 3s forwards;
+}
+
+@keyframes spread {
+    0% { background-position: 50% 50%; }
+    100% { background-position: 0% 0%; }
+}
+
+.btn-P {
+    padding-bottom: 5px;
+    font-size: 0.5em;
+}
+
 .icon-msg {
     width: 50px;
     height: 50px;
 }
 
-/* WAVES */
 .waves-wrapper {
     position: fixed;
     bottom: 0;
@@ -152,6 +172,7 @@ header h1 {
     pointer-events: none;
     z-index: -1;
 }
+
 .wave-back {
     position: absolute;
     bottom: 0;
@@ -161,6 +182,7 @@ header h1 {
     background-size: 50% 100%;
     animation: waveBack 12s linear infinite;
 }
+
 .wave-front {
     position: absolute;
     bottom: 0;
@@ -172,28 +194,13 @@ header h1 {
 }
 
 @keyframes waveBack {
-    0%   { transform: translateX(0); }
+    0% { transform: translateX(0); }
     100% { transform: translateX(-35%); }
 }
+
 @keyframes waveFront {
-    0%   { transform: translateX(0); }
+    0% { transform: translateX(0); }
     100% { transform: translateX(-60%); }
-}
-
-/* ------------------------- */
-/* RESPONSIVE FIXES          */
-/* ------------------------- */
-
-@media (max-width: 768px) {
-    .Island img {
-        width: 100%;
-        max-width: 380px;
-    }
-    }
-    .Tide-Body {
-        height: auto;
-        padding-bottom: 20px;
-    }
 }
 </style>
 </head>
@@ -201,10 +208,9 @@ header h1 {
 <body>
 
 <header class="py-3 px-3 d-flex align-items-center flex-wrap">
-    <a href="Logo.jpg">
-        <img src="Logo.jpg" alt="Baybayon Logo" class="Logo">
+    <a href="images/Logo.jpg">
+        <img src="images/Logo.jpg" alt="Baybayon Logo" class="Logo">
     </a>
-
     <h1 class="ms-3">Baybayon</h1>
 
     <div class="input-group ms-auto mt-2 mt-md-0" style="max-width: 260px;">
@@ -212,17 +218,13 @@ header h1 {
         <input type="search" class="form-control border-start-0" placeholder="Search Your Location">
     </div>
 
-    <button class="navbar-toggler ms-3 mt-2 mt-md-0"
-            data-bs-toggle="collapse"
-            data-bs-target="#navMenu"
-            aria-label="Toggle navigation">
+    <button class="navbar-toggler ms-3 mt-2 mt-md-0" data-bs-toggle="collapse" data-bs-target="#navMenu">
         <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse" id="navMenu">
         <div class="card shadow mt-2">
             <ul class="list-group list-group-flush">
-                <li class="list-group-item">Home</li>
                 <li class="list-group-item">About</li>
                 <li class="list-group-item">Contact</li>
             </ul>
@@ -237,29 +239,30 @@ header h1 {
 
 <div class="container mt-4">
 
-    <div class="row align-items-center gy-4">
-        <div class="col-12 col-md-4 text-center">
-            <a href="Account.html">
+    <div class="row align-items-center">
+        <div class="col-md-4 text-center">
+            <a href="login.html">
                 <button class="btn-custom mt-3 d-flex flex-column">
-                    <img src="Chat.jpg" alt="Chat and Interact" class="icon-msg">
-                    Chat With Nearby Users<br>Click Here
+                    <img src="images/Chat.jpg" alt="Chat and Interact" class="icon-msg">
+                    Click Here!
+                    <p class="btn-P">Chat with nearby Users</p>
                 </button>
             </a>
         </div>
 
-        <div class="col-12 col-md-8 text-center text-md-start">
+        <div class="col-md-8 text-center text-md-start mt-3">
             <h1 class="fw-bold text-primary">Today's Tide in General Luna SDN, Philippines</h1>
         </div>
     </div>
 
-    <div class="row mt-4 gy-4">
-        <div class="col-12 col-md-6 text-center">
+    <div class="row mt-4 align-items-start">
+        <div class="col-md-6 text-center mb-4">
             <div class="Island">
-                <img src="Island.jpg" alt="Island picture" class="img-fluid rounded">
+                <img src="images/Island.jpg" alt="Island picture">
             </div>
         </div>
 
-        <div class="col-12 col-md-6">
+        <div class="col-md-6 mb-4">
             <div class="Tide-Chart">
                 <div class="Tide-Header">
                     <h1>Tide Chart</h1>
@@ -270,10 +273,12 @@ header h1 {
                         <p class="fw-bold">Morning</p>
                         <p>7:00 AM Tide Rising<br>9:30 AM High Tide Peak</p>
                     </div>
+
                     <div class="d-flex justify-content-between px-4">
                         <p class="fw-bold">Afternoon</p>
                         <p>12:00 PM Tide Falling<br>3:30 PM Low Tide Peak</p>
                     </div>
+
                     <div class="Vertical-Line"></div>
                 </div>
             </div>
@@ -291,5 +296,3 @@ document.querySelector('.navbar-toggler').addEventListener('click', function () 
 
 </body>
 </html>
-
-
