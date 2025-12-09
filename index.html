@@ -140,28 +140,31 @@ header h1 {
     width: 150px;
     box-shadow: 5px 10px 5px #1f71dbab;
 }
-
 .btn-custom:hover {
-    background: radial-gradient(circle ,#1f71dbab 10%, #1dc593ff 90%);
+    background: radial-gradient(circle ,#1f71dbab 10%, #1dc593ff 90% );
     background-size: 1000% 1000%;
     animation: spread 3s forwards;
 }
-
 @keyframes spread {
-    0% { background-position: 50% 50%; }
-    100% { background-position: 0% 0%; }
+    0% {
+        background-position: 50% 50%;
+    }
+   
+    100% {
+        background-position: 0% 0%;
+    }
 }
-
 .btn-P {
-    padding-bottom: 5px;
+    padding-bottom: 10px;
     font-size: 0.5em;
+    padding-bottom: 5px;
 }
-
 .icon-msg {
     width: 50px;
     height: 50px;
 }
 
+/* REALISTIC WAVES */
 .waves-wrapper {
     position: fixed;
     bottom: 0;
@@ -173,6 +176,7 @@ header h1 {
     z-index: -1;
 }
 
+/* BACK WAVE */
 .wave-back {
     position: absolute;
     bottom: 0;
@@ -183,6 +187,7 @@ header h1 {
     animation: waveBack 12s linear infinite;
 }
 
+/* FRONT WAVE */
 .wave-front {
     position: absolute;
     bottom: 0;
@@ -194,23 +199,22 @@ header h1 {
 }
 
 @keyframes waveBack {
-    0% { transform: translateX(0); }
+    0%   { transform: translateX(0); }
     100% { transform: translateX(-35%); }
 }
 
 @keyframes waveFront {
-    0% { transform: translateX(0); }
+    0%   { transform: translateX(0); }
     100% { transform: translateX(-60%); }
 }
+
 </style>
 </head>
 
 <body>
 
 <header class="py-3 px-3 d-flex align-items-center flex-wrap">
-    <a href="images/Logo.jpg">
-        <img src="images/Logo.jpg" alt="Baybayon Logo" class="Logo">
-    </a>
+    <a href="Logo.jpg><img src="Logo.jpg" alt="Baybayon Logo" class="Logo"></a>
     <h1 class="ms-3">Baybayon</h1>
 
     <div class="input-group ms-auto mt-2 mt-md-0" style="max-width: 260px;">
@@ -231,19 +235,19 @@ header h1 {
         </div>
     </div>
 </header>
-
 <div class="waves-wrapper">
     <div class="wave-back"></div>
     <div class="wave-front"></div>
 </div>
 
+
 <div class="container mt-4">
 
     <div class="row align-items-center">
         <div class="col-md-4 text-center">
-            <a href="login.html">
+            <a href="Account.html">
                 <button class="btn-custom mt-3 d-flex flex-column">
-                    <img src="images/Chat.jpg" alt="Chat and Interact" class="icon-msg">
+                    <img src="Chat.jpg" alt="Chat and Interact" class="icon-msg">
                     Click Here!
                     <p class="btn-P">Chat with nearby Users</p>
                 </button>
@@ -258,7 +262,7 @@ header h1 {
     <div class="row mt-4 align-items-start">
         <div class="col-md-6 text-center mb-4">
             <div class="Island">
-                <img src="images/Island.jpg" alt="Island picture">
+                <img src="Island.jpg" alt="Island picture">
             </div>
         </div>
 
@@ -272,13 +276,12 @@ header h1 {
                     <div class="d-flex justify-content-between px-4 pt-3">
                         <p class="fw-bold">Morning</p>
                         <p>7:00 AM Tide Rising<br>9:30 AM High Tide Peak</p>
-                    </div>
 
+                    </div>
                     <div class="d-flex justify-content-between px-4">
-                        <p class="fw-bold">Afternoon</p>
+                       <p class="fw-bold">Afternoon</p>
                         <p>12:00 PM Tide Falling<br>3:30 PM Low Tide Peak</p>
                     </div>
-
                     <div class="Vertical-Line"></div>
                 </div>
             </div>
